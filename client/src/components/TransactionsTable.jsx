@@ -12,7 +12,7 @@ const TransactionsTable = () => {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000//transactions/list`
+          "http://localhost:5000/api/transactions/list"
         );
         setTransactions(response.data);
         setFilteredTransactions(response.data); // Initially show all transactions
