@@ -7,15 +7,13 @@ const TransactionsTable = () => {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [showTimePipe, setShowTimePipe] = useState(false);
 
-  const API_URL =
-    import.meta.env.VITE_API_URL ||
-    "http://localhost:5000/api/transactions/list";
-
   // Fetch transactions from the backend
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`${API_URL}/transactions/list`);
+        const response = await axios.get(
+          `http://localhost:5000//transactions/list`
+        );
         setTransactions(response.data);
         setFilteredTransactions(response.data); // Initially show all transactions
       } catch (error) {
