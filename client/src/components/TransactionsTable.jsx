@@ -7,22 +7,25 @@ const TransactionsTable = () => {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [showTimePipe, setShowTimePipe] = useState(false);
 
+  // Determine which server to use based on environment
+  const baseURL = import.meta.env.DEV
+    ? import.meta.env.VITE_LOCAL_SERVER_URL
+    : import.meta.env.VITE_PROD_SERVER_URL;
+
   // Fetch transactions from the backend
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(
-          "https://nd-task-server.vercel.app/list"
-        );
+        const response = await axios.get(`${baseURL}/list`);
         setTransactions(response.data);
-        setFilteredTransactions(response.data); // Initially show all transactions
+        setFilteredTransactions(response.data);
       } catch (error) {
         console.error("Error fetching transactions:", error);
       }
     };
 
     fetchTransactions();
-  }, []);
+  }, [baseURL]);
 
   // Calculate time difference between two createDate strings
   const calculateTimeDifference = (date1, date2) => {
