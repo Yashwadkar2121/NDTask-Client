@@ -16,7 +16,7 @@ const TransactionsTable = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`${baseURL}/list`);
+        const response = await axios.get(`${baseURL}/api/transactions/list`);
         setTransactions(response.data);
         setFilteredTransactions(response.data);
       } catch (error) {
